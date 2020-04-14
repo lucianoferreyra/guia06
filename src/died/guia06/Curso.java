@@ -66,6 +66,9 @@ public class Curso {
 			System.out.println("Error en el archivo: " + e.getMessage());
 		}
 	}
-
+	
+	public int getCreditos() {
+		return (this.creditos);
+	}
 
 }
