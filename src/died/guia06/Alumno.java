@@ -25,8 +25,8 @@ public class Alumno implements Comparable<Alumno> {
 		this.aprobados = new ArrayList<Curso>();
 	}
 
-	public int creditosObtenidos() {
-		int creditos = 0;
+	public Integer creditosObtenidos() {
+		Integer creditos = 0;
 		
 		for(Curso c : aprobados) {
 			creditos += c.getCreditos();
@@ -72,4 +72,23 @@ public class Alumno implements Comparable<Alumno> {
 		return this.cursando;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Integer getNroLibreta() {
+		return nroLibreta;
+	}
+
+	public void setNroLibreta(Integer nroLibreta) {
+		this.nroLibreta = nroLibreta;
+	}
+
+	public String toString() {
+		return(this.nombre);
+	}
 }

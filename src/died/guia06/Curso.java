@@ -2,6 +2,7 @@ package died.guia06;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import died.guia06.util.Registro;
@@ -59,22 +60,66 @@ public class Curso {
 	 * @return
 	 */
 	public Boolean inscribir(Alumno a) {
-		try {
-			log.registrar(this, "inscribir ",a.toString());
-		} catch(IOException e) {
-			System.out.println("Error al inscribir al alumno: " + e.getMessage());
+		
+		int contCiclo = 0; 
+		for(Curso c : a.getCursando()) {         // Obtener la cantidad de materias del mismo ciclo lectivo del curso.
+			if(c.cicloLectivo.equals(this.cicloLectivo)) {
+				contCiclo++;
+			}
+		}
+		
+		// Evaluar las condiciones necesarias para la inscripcion al curso.
+		if((a.creditosObtenidos() >= this.creditosRequeridos) && (this.cupo > this.inscriptos.size()) &&  (contCiclo < 3)) {	
+				try {
+				log.registrar(this, "inscribir ",a.toString());
+			} catch(IOException e) {
+				System.out.println("Error al inscribir al alumno: " + e.getMessage());
+				return false;
+			}
+			return true;
+		} else {
 			return false;
 		}
-		return true;
 	}
 	
 	
 	/**
 	 * imprime los inscriptos en orden alfabetico
 	 */
-	public void imprimirInscriptos() {
+	public void imprimirInscriptosPorLibreta() {
 		try {
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+			System.out.println();
+			
+			Collections.sort(this.getInscriptos(), new AlumnoLibretaComparator());
+			System.out.println(this.getInscriptos());
+
+		} catch(IOException e) {
+			System.out.println("Error en el archivo: " + e.getMessage());
+		}
+	}
+	
+	public void imprimirInscriptosPorCreditos() {
+		try {
+			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+			System.out.println();
+			
+			Collections.sort(this.getInscriptos(), new AlumnoCreditosComparator());
+			System.out.println(this.getInscriptos());
+
+		} catch(IOException e) {
+			System.out.println("Error en el archivo: " + e.getMessage());
+		}
+	}
+	
+	public void imprimirInscriptosPorNombre() {
+		try {
+			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+			System.out.println();
+			
+			Collections.sort(this.getInscriptos(), new AlumnoNombreComparator());
+			System.out.println(this.getInscriptos());
+
 		} catch(IOException e) {
 			System.out.println("Error en el archivo: " + e.getMessage());
 		}
@@ -84,4 +129,59 @@ public class Curso {
 		return (this.creditos);
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Integer getCicloLectivo() {
+		return cicloLectivo;
+	}
+
+	public void setCicloLectivo(Integer cicloLectivo) {
+		this.cicloLectivo = cicloLectivo;
+	}
+
+	public Integer getCupo() {
+		return cupo;
+	}
+
+	public void setCupo(Integer cupo) {
+		this.cupo = cupo;
+	}
+
+	public List<Alumno> getInscriptos() {
+		return inscriptos;
+	}
+
+	public void setInscriptos(List<Alumno> inscriptos) {
+		this.inscriptos = inscriptos;
+	}
+
+	public Integer getCreditosRequeridos() {
+		return creditosRequeridos;
+	}
+
+	public void setCreditosRequeridos(Integer creditosRequeridos) {
+		this.creditosRequeridos = creditosRequeridos;
+	}
+
+	public void setCreditos(Integer creditos) {
+		this.creditos = creditos;
+	}
+
+	
+	
+	
 }
