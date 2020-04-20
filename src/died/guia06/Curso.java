@@ -60,7 +60,7 @@ public class Curso {
 	 * @return
 	 */
 	public Boolean inscribir(Alumno a) {
-		
+	
 		int contCiclo = 0; 
 		for(Curso c : a.getCursando()) {         // Obtener la cantidad de materias del mismo ciclo lectivo del curso.
 			if(c.cicloLectivo.equals(this.cicloLectivo)) {
@@ -72,6 +72,7 @@ public class Curso {
 		if((a.creditosObtenidos() >= this.creditosRequeridos) && (this.cupo > this.inscriptos.size()) &&  (contCiclo < 3)) {	
 				try {
 				log.registrar(this, "inscribir ",a.toString());
+				inscriptos.add(a);
 			} catch(IOException e) {
 				System.out.println("Error al inscribir al alumno: " + e.getMessage());
 				return false;
@@ -89,7 +90,7 @@ public class Curso {
 	public void imprimirInscriptosPorLibreta() {
 		try {
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
-			System.out.println();
+			//System.out.println();
 			
 			Collections.sort(this.getInscriptos(), new AlumnoLibretaComparator());
 			System.out.println(this.getInscriptos());
@@ -102,7 +103,7 @@ public class Curso {
 	public void imprimirInscriptosPorCreditos() {
 		try {
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
-			System.out.println();
+			//System.out.println();
 			
 			Collections.sort(this.getInscriptos(), new AlumnoCreditosComparator());
 			System.out.println(this.getInscriptos());
@@ -115,7 +116,7 @@ public class Curso {
 	public void imprimirInscriptosPorNombre() {
 		try {
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
-			System.out.println();
+			//System.out.println();
 			
 			Collections.sort(this.getInscriptos(), new AlumnoNombreComparator());
 			System.out.println(this.getInscriptos());

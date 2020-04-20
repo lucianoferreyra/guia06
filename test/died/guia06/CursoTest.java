@@ -10,17 +10,18 @@ import org.junit.jupiter.api.Test;
 
 class CursoTest {
 	
-	Alumno a1, a2;
-	
-	@BeforeEach
-	public void init() {
-		a1 = new Alumno("Juan", 123);
-		a2 = new Alumno("Pedro", 567);
-	}
+//	Alumno a1, a2;
+//	
+//	@BeforeEach
+//	public void init() {
+//		a1 = new Alumno("Juan", 123);
+//		a2 = new Alumno("Pedro", 567);
+//	}
 	
 	@Test
 	void testInscribirCorrecto() {
-		
+		Alumno a1 = new Alumno("Juan", 123);
+		Alumno a2 = new Alumno("Pedro", 567);
 		Curso c1 = new Curso(2, "C1", 1, 10, 10, 0);
 		
 		c1.inscribir(a1);
@@ -54,7 +55,7 @@ class CursoTest {
 	
 	void testInscribirCupo() {
 		Alumno a1 = new Alumno("Juan", 123);
-		Alumno a2 = new Alumno("Pedro", 567);
+	Alumno a2 = new Alumno("Pedro", 567);
 		Curso c1 = new Curso(2, "C1", 1, 1, 10, 0);
 		
 		c1.inscribir(a1);
@@ -67,12 +68,12 @@ class CursoTest {
 	}
 	
 	void testInscribirCicloLectivo() {
-		Alumno a1 = new Alumno("Juan", 123);
-		Alumno a2 = new Alumno("Pedro", 567);
-		Curso c1 = new Curso(2, "C1", 1, 1, 10, 0);
-		Curso c2 = new Curso(2, "C1", 1, 1, 10, 0);
-		Curso c3 = new Curso(2, "C1", 1, 1, 10, 0);
-		Curso c4 = new Curso(2, "C1", 1, 1, 10, 0);
+	Alumno a1 = new Alumno("Juan", 123);
+	Alumno a2 = new Alumno("Pedro", 567);
+		Curso c1 = new Curso(2, "C1", 1, 10, 10, 0);
+		Curso c2 = new Curso(3, "C2", 1, 10, 10, 0);
+		Curso c3 = new Curso(4, "C3", 1, 10, 10, 0);
+		Curso c4 = new Curso(5, "C4", 1, 10, 10, 0);
 		
 		c1.inscribir(a1);
 		c2.inscribir(a1);

@@ -2,6 +2,7 @@ package died.guia06;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ class AlumnoTest {
 		Alumno a1 = new Alumno();
 		Curso c1 = new Curso(1, "C1", 1, 10, 6, 0);
 		Curso c2 = new Curso(2, "C2", 1, 10, 10, 0);
-		prueba = null;
+		prueba = new ArrayList<Curso>();
 		prueba.add(c1);
 		prueba.add(c2);
 		a1.setAprobada(prueba);
@@ -28,9 +29,9 @@ class AlumnoTest {
 	void testAprobar() {
 		Alumno a1 = new Alumno();
 		Curso c1 = new Curso(1, "C1", 1, 10, 6, 0);
-		cursando = null;
+		cursando = new ArrayList<Curso>();
 		cursando.add(c1);
-		List<Curso> aprobada = null;
+		List<Curso> aprobada = new ArrayList<Curso>();
 		a1.setCursando(cursando);
 		a1.setAprobada(aprobada);
 		a1.aprobar(c1);
