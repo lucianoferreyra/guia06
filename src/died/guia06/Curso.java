@@ -73,6 +73,8 @@ public class Curso {
 				try {
 				log.registrar(this, "inscribir ",a.toString());
 				inscriptos.add(a);
+				a.inscripcionAceptada(this);
+				System.out.println("El alumno "+ a.getNombre() + " ha sido inscripto con  exito.");
 			} catch(IOException e) {
 				System.out.println("Error al inscribir al alumno: " + e.getMessage());
 				return false;
@@ -125,6 +127,39 @@ public class Curso {
 			System.out.println("Error en el archivo: " + e.getMessage());
 		}
 	}
+	
+	
+	public void inscribirAlumno(Alumno a) throws Exception {
+		
+		int contCiclo = 0; 
+		for(Curso c : a.getCursando()) {         // Obtener la cantidad de materias del mismo ciclo lectivo del curso.
+			if(c.cicloLectivo.equals(this.cicloLectivo)) {
+				contCiclo++;
+			}
+		}
+		
+		if(a.creditosObtenidos() < this.creditosRequeridos) {
+			throw new InscribirAlumnoException("El alumno no posee los creditos requeridos por el curso.");
+		}
+		if(this.cupo <= this.inscriptos.size()) {
+			throw new InscribirAlumnoException("El cupo del curso ya se ha completado.");
+		}
+		if(contCiclo >= 3) {
+			throw new InscribirAlumnoException("El alumno ya esta cursando tres materias del mismo ciclo  lectivo.");
+		}
+		
+		try {
+			log.registrar(this, "inscribir ",a.toString());
+			inscriptos.add(a);
+			System.out.println("El alumno "+ a.getNombre() + " ha sido inscripto con  exito.");
+			a.inscripcionAceptada(this);
+		}
+		catch(IOException e) {
+			throw new RegistroAuditoriaException("Ha ocurrido un error en el archivo de registro.");
+		}
+	}
+	
+	
 	
 	public int getCreditos() {
 		return (this.creditos);
