@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class AlumnoTest {
-
+ 
 	private List<Curso> cursando;
 	private List<Curso> prueba;
 

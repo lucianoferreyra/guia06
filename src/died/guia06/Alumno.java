@@ -42,7 +42,7 @@ public class Alumno implements Comparable<Alumno> {
 	public void inscripcionAceptada(Curso c) {
 		this.cursando.add(c);
 	}
-
+ 
 	public boolean equals(Alumno a) {
 		if(this.nroLibreta.equals(a.nroLibreta)) {
 			return true;

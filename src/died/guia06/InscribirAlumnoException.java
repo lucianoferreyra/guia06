@@ -7,3 +7,4 @@ public class InscribirAlumnoException extends Exception {
 	}
 	
 }
+ 

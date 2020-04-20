@@ -136,7 +136,7 @@ public class Curso {
 			if(c.cicloLectivo.equals(this.cicloLectivo)) {
 				contCiclo++;
 			}
-		}
+		} 
 		
 		if(a.creditosObtenidos() < this.creditosRequeridos) {
 			throw new InscribirAlumnoException("El alumno no posee los creditos requeridos por el curso.");
